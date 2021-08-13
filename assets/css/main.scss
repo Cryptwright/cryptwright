@@ -44,7 +44,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 }
 
 body {
-  background: url("/assets/img/spookyhouse.jpg") no-repeat center center fixed;
+  background: url({{ "/assets/img/spookyhouse.jpg" | relative_url }}) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
