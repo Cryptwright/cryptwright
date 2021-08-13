@@ -48,7 +48,7 @@ title: Home
             <li class="list-group-item border-0 p-0 bg-transparent">
              <a href="{{ release.product_link}}" target="_blank">
                 <div class="card">
-                    <img src="/assets/img/releases/{{ release.image }}" class="card-img-top">
+                    <img src="{{ site.baseurl }}/assets/img/releases/{{ release.image }}" class="card-img-top">
 <!--                     <div class="card-body"> -->
                         <!-- <h4 class="card-title text-success">{{ release.title}}</h4> -->
 <!--                         <p class="card-text">{{ release.subtitle }}</p> -->
@@ -79,7 +79,7 @@ title: Home
         {% for project in site.production %}
             <li class="list-group-item border-0 p-0">
                 <div class="card">
-                    <img src="/assets/img/production/{{ project.image }}" class="card-img-top">
+                    <img src="{{ site.baseurl }}/assets/img/production/{{ project.image }}" class="card-img-top">
                     <div class="card-body">
                         <h4 class="card-title text-warning">{{ project.title}}</h4>
                         <div class="card-text">
