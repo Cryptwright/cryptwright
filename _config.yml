@@ -9,7 +9,9 @@ collections:
   releases:
   production:
 
-
+exclude:
+  - Rakefile
+  
 ## Design Notes
 ## After realizing I was adding too much too soon i'm removing the blog, product details, and mailing list until later.
 ## Their efforts are still here just hidden until time to use.
