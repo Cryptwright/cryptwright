@@ -17,3 +17,7 @@ exclude:
 ## Design Notes
 ## After realizing I was adding too much too soon i'm removing the blog, product details, and mailing list until later.
 ## Their efforts are still here just hidden until time to use.
+## 
+## pushing to github pages
+## ------------------------
+## https://stackoverflow.com/questions/17835937/how-do-i-push-jekyll-site-directory-to-gh-pages-branch-and-leave-the-source-in
