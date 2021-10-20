@@ -30,7 +30,7 @@ title: Home
             </div>
         </section>
 
-<section class="py-5" id="releases">
+<section class="pb-2 pt-5" id="releases">
   <div class="container">
     <h2 class="text-yellow">My RPG Content</h2>
     <p>Below are the RPG releases I have published. Please feel free to browse or click on the image to see more details.</p>
@@ -39,10 +39,8 @@ title: Home
 
         <!-- About-->
 <div class="container">
-<section class="page-section py-5">
+<section class="page-section py-3">
     <ul class="list-group list-group-horizontal align-items-stretch flex-wrap">
-
-
         {% for release in site.releases reversed %}
             <li class="list-group-item border-0 p-0 bg-transparent">
              <a href="{{ release.product_link}}" target="_blank">
@@ -62,7 +60,40 @@ title: Home
         </ul>
 </section>
 </div>
-<section class="py-5" id="production">
+
+
+<section class="pb-2 pt-5" id="vtt_releases">
+  <div class="container">
+    <h2 class="text-yellow">My VTT Content</h2>
+    <p>Below are the virtual tabletop releases I have published. Please feel free to browse or click on the image to see more details.</p>
+  </div>
+</section>
+
+        <!-- About-->
+<div class="container">
+<section class="page-section py-3">
+    <ul class="list-group list-group-horizontal align-items-stretch flex-wrap">
+        {% for vtt_release in site.vtt_releases reversed %}
+            <li class="list-group-item border-0 p-0 bg-transparent">
+             <a href="{{ vtt_release.product_link}}" target="_blank">
+                <div class="card">
+                    <img src="{{ site.baseurl }}/assets/img/vtt_releases/{{ vtt_release.image }}" class="card-img-top">
+<!--                     <div class="card-body"> -->
+                        <!-- <h4 class="card-title text-success">{{ release.title}}</h4> -->
+<!--                         <p class="card-text">{{ release.subtitle }}</p> -->
+<!--                         <div class="text-center">
+                          <a class="btn btn-primary" href="{{ release.product_link}}" type="button">View Product</a>  
+                        </div>                        
+                    </div> -->
+                </div>
+             </a>
+            </li>
+        {% endfor %}
+        </ul>
+</section>
+</div>
+
+<section class="pb-2 pt-5" id="production">
   <div class="container">
     <h2 class="text-yellow">What's On Deck?</h2>
     <p>These are the supplements I'm currently working on.</p>
@@ -71,7 +102,7 @@ title: Home
 
         <!-- About-->
 <div class="container">
-<section class="page-section py-5">
+<section class="page-section py-3">
     <ul class="list-group list-group-horizontal align-items-stretch flex-wrap">
 
 

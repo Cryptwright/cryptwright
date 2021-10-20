@@ -1,5 +1,5 @@
 ---
-title: Procan's Promenade
-image: procans_promenade_cover.jpg
+title: Primordial Mine
+image: primordial_mine.jpg
 ---
-A celebration to honor those lost at sea is interrupted by a sudden death.
+The long awaited sequel to Lost in Shadow.  This time we go to the familiar locations from Lost Mine of Phandelver but in their Feywild counterparts.

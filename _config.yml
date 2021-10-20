@@ -10,6 +10,7 @@ sass:
 collections:
   releases:
   production:
+  vtt_releases:
 
 exclude:
   - Rakefile
