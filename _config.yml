@@ -3,7 +3,7 @@
 url: "https://www.cryptwright.com"
 # baseurl: "/" # the subpath of your site, e.g. /blog
 title: "Chris Valentine" # the name of your site, e.g. ACME Corp.
-
+mailchimp-list: "https://cryptwright.us14.list-manage.com/subscribe/post?u=1d49a65aa22e2f77f797b25e3&amp;id=6c99a12a1b"
 sass:
   sass_dir: _sass
 
