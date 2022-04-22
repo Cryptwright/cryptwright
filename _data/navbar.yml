@@ -1,10 +1,10 @@
 - name: About Me
-  link: "#about"
+  link: "/#about"
 - name: Supplement Releases
-  link: "#releases"
+  link: "/#releases"
 - name: VTT
-  link: "#vtt_releases"
+  link: "/#vtt_releases"
 - name: Current Projects
-  link: "#production"
+  link: "/#production"
 - name: Contact
   link: "#contact"
