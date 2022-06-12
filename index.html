@@ -7,10 +7,10 @@ title: Home
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end ">
-                        <h1 class="text-yellow font-weight-bold">Chris Valentine</h1>
+                        <h1 class="text-yellow font-weight-bold deep-shadow">Chris Valentine</h1>
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white mb-5">Bestselling author on DMsGuild and DriveThruRPG. I also partake in a lot of amateur art, game mastering, RPG game playing, and compelling thought experiments.</p>
+                        <p class="text-white mb-5 thin-shadow">This is the homepage of the bestselling RPG author and gamemaster.<br><br> I scribble grimsical adventures in the heart of the Sonoran Desert, Phoenix, Arizona, USA. I try to make sure they are fun, memorable, and make you think. I focus on rich stories, well-developed lore, and clever twists.</p>
                         <a class="btn btn-primary btn-xl border-dark border-1" href="#about">Learn More</a>
                     </div>
                 </div>
@@ -23,36 +23,78 @@ title: Home
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 text-center">
                         <h2 class="text-yellow mt-0">About Me</h2>
-                        <p class="text-white-75 mb-4 py-2 text-left">I create grimsical fantasy rpg adventures that are fun to play and hopefully make you think. I like to focus on rich stories, well developed lore, and clever twists that make them memorable.</p>
+                        <p class="text-white-75 mb-4 py-2 text-left thin-shadow"><br>
+                        I've been involved with the hobby for over thirty years. At the end of 2019, I decided I wanted to start creating content. I took a few workshops and classes and began creating. So far, things are going well. Several of my titles have achieved bestselling status and some have even won awards.<br><br>I also regularly volunteer as a convention DM to help bring new people into the hobby. In addition, I'm the Vice President of Phoenix RPGs, a non-profit organization dedicated to spreading awareness of RPGs and using skills learned in-game to improve real-life problem solving, socializing, storytelling, and leadership abilities.</p>
                         <a class="btn btn-light btn-xl" href="#releases">Browse My Content</a>
                     </div>
                 </div>
             </div>
         </section>
 
+{% assign featured_release = site.releases | where:"featured", "true" %}
+    {% for release in featured_release  %}
+        <!-- Page Content -->
+        <section class="page-section  py-5" id="featured">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="text-yellow mt-0 deep-shadow">Featured Release</h2>
+
+                        <div class="card mb-3 shadowed">
+                          <div class="row no-gutters">
+                            <div class="col-md-6">
+                                <a href="{{ release.product_link }}" class="">
+                              <img src="{{ site.baseurl }}/assets/img/releases/{{ release.image }}" class="card-img" id="featured_img"></a>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="card-body">
+                                <h5 class="card-title text-yellow">{{ release.title }}</h5>
+                                <p class="card-text">{{ release.content }}</p>
+                                <p class="card-text"><a href="{{ release.product_link }}" class="btn btn-primary btn-lg btn-block">View More information</a></p>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endfor %}
+
+{% assign dnd_releases = site.releases | where_exp: "item", "item.progress.status == 'finished' and item.type == 'dnd'" %}
+{% assign al_releases  = site.releases | where_exp: "item", "item.progress.status == 'finished' and item.type == 'al'" %}
+{% assign collab_releases  = site.releases | where_exp: "item", "item.progress.status == 'finished' and item.type == 'collab'" %}
+{% assign vtt_releases = site.releases | where_exp: "item", "item.progress.status == 'finished' and item.type == 'vtt'" %}
+
+<!-- My Releases -->
 <section class="pb-2 pt-5" id="releases">
   <div class="container">
-    <h2 class="text-yellow">My RPG Content</h2>
-    <p>Below are the RPG releases I have published. Please feel free to browse or click on the image to see more details.</p>
+    <h2 class="text-yellow deep-shadow">My RPG Content</h2>
+    <p class="thin-shadow">Below are the RPG releases I have published. Please feel free to browse or click on the images to see more details.</p>
+    <p class="p-2">Jump to 
+        <a href="#al_releases" class="btn btn-primary btn-sm">Adventurers League</a>
+        <a href="#collab_releases" class="btn btn-primary btn-sm">Collaborative Work</a>
+        <a href="#vtt_releases" class="btn btn-primary btn-sm">Virtual Tabletop</a>
+    </p>
   </div>
 </section>
 
-        <!-- About-->
 <div class="container">
 <section class="page-section py-3">
     <ul class="list-group list-group-horizontal align-items-stretch flex-wrap">
-        {% for release in site.releases reversed %}
+        {% for release in dnd_releases reversed %}
             <li class="list-group-item border-0 p-0 bg-transparent">
              <a href="{{ release.product_link}}" target="_blank">
-                <div class="card">
+                <div class="card bg-transparent">
                     <img src="{{ site.baseurl }}/assets/img/releases/{{ release.image }}" class="card-img-top">
-<!--                     <div class="card-body"> -->
-                        <!-- <h4 class="card-title text-success">{{ release.title}}</h4> -->
-<!--                         <p class="card-text">{{ release.subtitle }}</p> -->
-<!--                         <div class="text-center">
-                          <a class="btn btn-primary" href="{{ release.product_link}}" type="button">View Product</a>  
-                        </div>                        
-                    </div> -->
+                    <p class="card-text">
+                        {% if release.stats.system   != "" %}<span class="badge badge-primary">{{ release.stats.system }}</span>{% endif %}
+                        {% if release.stats.type     != "" %}<span class="badge badge-forest">{{ release.stats.type }}</span>{% endif %}
+                        {% if release.stats.level    != "" %}<span class="badge badge-warning">{{ release.stats.level }}</span>{% endif %}
+                        {% if release.stats.duration != "" %}<span class="badge badge-slate">{{ release.stats.duration }}</span>{% endif %}
+                    </p>
                 </div>
              </a>
             </li>
@@ -60,31 +102,93 @@ title: Home
         </ul>
 </section>
 </div>
+<!-- End My Releases -->
 
+<!-- My AL Releases -->
+<section class="pb-2 pt-5" id="al_releases">
+  <div class="container">
+    <h2 class="text-yellow deep-shadow">My Adventurers League Content</h2>
+    <p class="thin-shadow">These are the Adventurers League legal releases I have put out. Please feel free to browse or click on the images to see more details.</p>
+  </div>
+</section>
 
+<div class="container">
+<section class="page-section py-3">
+    <ul class="list-group list-group-horizontal align-items-stretch flex-wrap">
+        {% for release in al_releases reversed %}
+            <li class="list-group-item border-0 p-0 bg-transparent">
+             <a href="{{ release.product_link}}" target="_blank">
+                <div class="card bg-transparent">
+                    <img src="{{ site.baseurl }}/assets/img/releases/{{ release.image }}" class="card-img-top">                    
+                    <p class="card-text">
+                        {% if release.stats.system   != "" %}<span class="badge badge-primary">{{ release.stats.system }}</span>{% endif %}
+                        {% if release.stats.type     != "" %}<span class="badge badge-forest">{{ release.stats.type }}</span>{% endif %}
+                        {% if release.stats.level    != "" %}<span class="badge badge-warning">{{ release.stats.level }}</span>{% endif %}
+                        {% if release.stats.duration != "" %}<span class="badge badge-slate">{{ release.stats.duration }}</span>{% endif %}
+                    </p>
+                </div>
+             </a>
+            </li>
+        {% endfor %}
+        </ul>
+</section>
+</div>
+<!-- End My Releases -->
+
+<!-- My Collab Releases -->
+<section class="pb-2 pt-5" id="collab_releases">
+  <div class="container">
+    <h2 class="text-yellow deep-shadow">My Collaborative Content</h2>
+    <p class="thin-shadow">I've collaborated on the following titles, usually as a writer.</p>
+  </div>
+</section>
+
+<div class="container">
+<section class="page-section py-3">
+    <ul class="list-group list-group-horizontal align-items-stretch flex-wrap">
+        {% for release in collab_releases reversed %}
+            <li class="list-group-item border-0 p-0 bg-transparent">
+             <a href="{{ release.product_link}}" target="_blank">
+                <div class="card bg-transparent">
+                    <img src="{{ site.baseurl }}/assets/img/releases/{{ release.image }}" class="card-img-top">
+                    <p class="card-text">
+                        {% if release.stats.system   != "" %}<span class="badge badge-primary">{{ release.stats.system }}</span>{% endif %}
+                        {% if release.stats.type     != "" %}<span class="badge badge-forest">{{ release.stats.type }}</span>{% endif %}
+                        {% if release.stats.level    != "" %}<span class="badge badge-warning">{{ release.stats.level }}</span>{% endif %}
+                        {% if release.stats.duration != "" %}<span class="badge badge-slate">{{ release.stats.duration }}</span>{% endif %}
+                    </p>
+                </div>
+             </a>
+            </li>
+        {% endfor %}
+        </ul>
+</section>
+</div>
+<!-- End My Releases -->
+
+<!-- My VTT Releases -->
 <section class="pb-2 pt-5" id="vtt_releases">
   <div class="container">
-    <h2 class="text-yellow">My VTT Content</h2>
-    <p>Below are the virtual tabletop releases I have published. Please feel free to browse or click on the image to see more details.</p>
+    <h2 class="text-yellow deep-shadow">My VTT Content</h2>
+    <p class="thin-shadow">These are for the virtual tabletop (VTT). Please feel free to browse or click on the images to see more details.</p>
   </div>
 </section>
 
-        <!-- About-->
+        
 <div class="container">
 <section class="page-section py-3">
     <ul class="list-group list-group-horizontal align-items-stretch flex-wrap">
-        {% for vtt_release in site.vtt_releases reversed %}
+        {% for release in vtt_releases reversed %}
             <li class="list-group-item border-0 p-0 bg-transparent">
-             <a href="{{ vtt_release.product_link}}" target="_blank">
-                <div class="card">
-                    <img src="{{ site.baseurl }}/assets/img/vtt_releases/{{ vtt_release.image }}" class="card-img-top">
-<!--                     <div class="card-body"> -->
-                        <!-- <h4 class="card-title text-success">{{ release.title}}</h4> -->
-<!--                         <p class="card-text">{{ release.subtitle }}</p> -->
-<!--                         <div class="text-center">
-                          <a class="btn btn-primary" href="{{ release.product_link}}" type="button">View Product</a>  
-                        </div>                        
-                    </div> -->
+             <a href="{{ release.product_link}}" target="_blank">
+                <div class="card bg-transparent">
+                    <img src="{{ site.baseurl }}/assets/img/releases/{{ release.image }}" class="card-img-top">
+                    <p class="card-text">
+                        {% if release.stats.system   != "" %}<span class="badge badge-primary">{{ release.stats.system }}</span>{% endif %}
+                        {% if release.stats.type     != "" %}<span class="badge badge-forest">{{ release.stats.type }}</span>{% endif %}
+                        {% if release.stats.level    != "" %}<span class="badge badge-warning">{{ release.stats.level }}</span>{% endif %}
+                        {% if release.stats.duration != "" %}<span class="badge badge-slate">{{ release.stats.duration }}</span>{% endif %}
+                    </p>                    
                 </div>
              </a>
             </li>
@@ -92,25 +196,29 @@ title: Home
         </ul>
 </section>
 </div>
+<!-- End My VTT Releases -->
 
+<!-- In Production -->
 <section class="pb-2 pt-5" id="production">
   <div class="container">
-    <h2 class="text-yellow">What's On Deck?</h2>
-    <p>These are the supplements I'm currently working on.</p>
+    <h2 class="text-yellow deep-shadow">What's On Deck?</h2>
+    <p class="thin-shadow">These are the supplements I'm currently working on.</p>
   </div>
 </section>
 
-        <!-- About-->
+{% assign future_releases = site.releases | where_exp: "item", "item.progress.status != 'finished'" %}
+
 <div class="container">
 <section class="page-section py-3">
     <ul class="list-group list-group-horizontal align-items-stretch flex-wrap">
-
-
-        {% for project in site.production %}
+        {% for project in future_releases %}
             <li class="list-group-item border-0 p-0">
                 <div class="card">
-                    <img src="{{ site.baseurl }}/assets/img/production/{{ project.image }}" class="card-img-top">
+                    <img src="{{ site.baseurl }}/assets/img/releases/{{ project.image }}" class="card-img-top">
                     <div class="card-body">
+                        <div class="progress my-2">
+                            <div class="progress-bar" role="progressbar" style="width: {{ project.progress.percent }}%;" aria-valuenow="{{ project.progress.percent }}" aria-valuemin="0" aria-valuemax="100">{{ project.progress.status}}</div>
+                        </div>
                         <h4 class="card-title text-success">{{ project.title}}</h4>
                         <div class="card-text">
                             {{ project.content }}
@@ -122,7 +230,9 @@ title: Home
         </ul>
 </section>        
 </div>
+<!-- End In Production -->
 
+<!-- Newsletter Section -->
 <section class="page-section bg-dark py-5" id="newsletter">
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -133,3 +243,4 @@ title: Home
         </div>
     </div>
 </section>        
+<!-- End Newsletter Section -->

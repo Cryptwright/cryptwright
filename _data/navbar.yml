@@ -1,6 +1,8 @@
 - name: About Me
   link: "/#about"
-- name: Supplement Releases
+- name: Featured
+  link: "/#featured"  
+- name: Supplements
   link: "/#releases"
 - name: VTT
   link: "/#vtt_releases"
